@@ -1,7 +1,7 @@
 <?php
  
  
-class Category_model extends CI_Model{
+class ShoppingList_model extends CI_Model{
  
     public function __construct()
     {
@@ -14,8 +14,8 @@ class Category_model extends CI_Model{
     */
     public function get_all()
     {
-        $categories = $this->db->get("categories")->result();
-        return $categories;
+        $lists = $this->db->get("lists")->result();
+        return $lists;
     }
  
     /*
@@ -25,9 +25,12 @@ class Category_model extends CI_Model{
     {    
         $data = [
             'title' => $this->input->post('title'),
+            // 'date_added' => $this->input->post('date_added'),
+            // 'status' => $this->input->post('status'),
+            'category_id' => $this->input->post('category_id'),
         ];
  
-        $result = $this->db->insert('categories', $data);
+        $result = $this->db->insert('lists', $data);
         return $result;
     }
  
@@ -36,8 +39,8 @@ class Category_model extends CI_Model{
     */
     public function get($id)
     {
-        $category = $this->db->get_where('categories', ['id' => $id ])->row();
-        return $category;
+        $list = $this->db->get_where('lists', ['id' => $id ])->row();
+        return $list;
     }
  
  
@@ -48,9 +51,12 @@ class Category_model extends CI_Model{
     {
         $data = [
             'title' => $this->input->post('title'),
+            'date_added' => $this->input->post('date_added'),
+            'status' => $this->input->post('status'),
+            'category_id' => $this->input->post('category_id'),
         ];
  
-        $result = $this->db->where('id', $id)->update('categories',$data);
+        $result = $this->db->where('id', $id)->update('lists',$data);
         return $result;
                  
     }
@@ -60,7 +66,7 @@ class Category_model extends CI_Model{
     */
     public function delete($id)
     {
-        $result = $this->db->delete('categories', array('id' => $id));
+        $result = $this->db->delete('lists', array('id' => $id));
         return $result;
     }
      

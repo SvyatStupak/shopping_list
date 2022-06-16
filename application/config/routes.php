@@ -49,17 +49,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+// echo date('Ymdhis');
+
+$route['default_controller'] = "welcome";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-
-$route['category'] = "Category/index";
-$route['category/create'] = "Category/create";
+// Categories
+$route['category']= "Category/index";
+$route['category/create']= "Category/create";
 $route['category/edit'] = "Category/edit/$1";
 $route['category/store'] = "Category/store";
 $route['category/show'] = "Category/show/$1";
 $route['category/update/(:any)'] = "Category/update/$1";
-$route['category/delete'] = "Category/delete";
+$route['category/delete/(:any)'] = "Category/delete/$1";
 
-// echo date('Ymdhis');
+// Lists
+$route['list'] = "ShoppingList/index";
+$route['list/create'] = "ShoppingList/create";
+$route['list/edit/(:any)'] = "ShoppingList/edit/$1";
+$route['list/store'] = "ShoppingList/store";
+$route['list/show/(:any)'] = "ShoppingList/show/$1";
+$route['list/update/(:any)']= "ShoppingList/update/$1";
+$route['list/delete/(:any)'] = "ShoppingList/delete/$1";
+
+
+
+
