@@ -22,6 +22,9 @@
                 <button class="btn btn-outline-primary" onclick="createShoppingList()">
                     Create New List
                 </button>
+                <a class="btn btn-outline-primary" href="<?php echo base_url('/') ?>">
+                    Main
+                </a>
             </div>
             <div class="card-body">
                 <div id="alert-div">
