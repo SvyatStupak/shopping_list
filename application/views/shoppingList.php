@@ -30,6 +30,23 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
+                            <th></th>
+                            <th></th>
+                            <th>
+                                <select name="catStatus" id="catStatus">
+                                    <option value="" selected>All statuses</option>
+                                    <option value="unfinished">unfinished</option>
+                                    <option value="bought">bought</option>
+                                </select>
+                            </th>
+                            <th>
+                                <select name="catFilter" id="catFilter">
+                                    <option value="" selected>All categories</option>
+                                </select>
+                            </th>
+                            <th width="240px">Action</th>
+                        </tr>
+                        <tr>
                             <th>Title</th>
                             <th>Date</th>
                             <th>Status</th>
@@ -76,8 +93,8 @@
                                     <label for="status">Choise category</label>
                                     <div>
                                         <select class="form-select" name="status" id="status">
-                                            <option value="0">Not Bought</option>
-                                            <option value="1">Bought</option>
+                                            <option value="0">unfinished</option>
+                                            <option value="1">bought</option>
                                         </select>
                                     </div>
                                 </div>
@@ -109,8 +126,8 @@
                             <label for="status">Choise category</label>
                             <div>
                                 <select class="form-select" name="status" id="status">
-                                    <option value="0">Not Bought</option>
-                                    <option value="1">Bought</option>
+                                    <option value="0">unfinished</option>
+                                    <option value="1">bought</option>
                                 </select>
                             </div>
                         </div>
@@ -148,6 +165,26 @@
     <script type="text/javascript">
         showAllShoppingList();
 
+        $(document).ready(function() {
+            $('#catFilter').on('change', function() {
+                var value = $(this).val();
+                // alert(value);
+                $('#lists-table-body tr').filter(function() {
+                    $(this).toggle($(this).text().toLocaleLowerCase().indexOf(value) > -1)
+                })
+            })
+        })
+
+        $(document).ready(function() {
+            $('#catStatus').on('change', function() {
+                var value = $(this).val();
+                // alert(value);
+                $('#lists-table-body tr').filter(function() {
+                    $(this).toggle($(this).text().toLocaleLowerCase().indexOf(value) > -1)
+                })
+            })
+        })
+
         function showAllShoppingList() {
             let url = $('meta[name=app-url]').attr("content") + "index.php/shoppingList/show_all";
             $.ajax({
@@ -165,6 +202,11 @@
                     for (let k = 0; k < category.length; k++) {
                         let addSelect = `<option value="` + category[k].id + `">` + category[k].title + `</option>`
                         $("#category_id").append(addSelect);
+                    }
+
+                    for (let j = 0; j < category.length; j++) {
+                        let addCategoryFilter = `<option value="` + category[j].title + `">` + category[j].title + `</option>`
+                        $("#catFilter").append(addCategoryFilter);
                     }
 
 
@@ -188,12 +230,12 @@
                             ' onclick="destroyShoppingList(' + shoppingLists[i].id + ')">Delete' +
                             '</button>';
 
-                        let statusWord = shoppingLists[i].status == 1 ? 'Bought' : 'Not Bougth';
+                        let statusWord = shoppingLists[i].status == 1 ? 'bought' : 'unfinished';
 
                         let shoppingListRow = '<tr>' +
                             '<td>' + shoppingLists[i].title + '</td>' +
                             '<td>' + shoppingLists[i].date_added + '</td>' +
-                            '<td onclick="editShoppingList(' + shoppingLists[i].id + ')">' + `<a href="#">` +  statusWord + `</a>` + '</td>' +
+                            '<td onclick="editShoppingList(' + shoppingLists[i].id + ')">' + statusWord + '</td>' +
                             '<td>' + category_list + '</td>' +
                             '<td>' + showBtn + editBtn + deleteBtn + '</td>' +
                             '</tr>';
@@ -244,7 +286,7 @@
             let url = $('meta[name=app-url]').attr("content") + "index.php/shoppingList/store";
             let data = {
                 title: $("#title").val(),
-                // status: $("#status").val(),
+                status: $("#status").val(),
                 category_id: $("#category_id").val(),
             };
             $.ajax({
@@ -252,7 +294,6 @@
                 type: "POST",
                 data: data,
                 success: function(response) {
-
                     $("#save-shoppinglist-btn").prop('disabled', false);
                     let successHtml = '<div class="alert alert-success" role="alert"><b>ShoppingList Created Successfully</b></div>';
                     $("#alert-div").html(successHtml);
@@ -374,7 +415,7 @@
                 success: function(response) {
                     // console.log(response);
                     let shoppingList = response;
-                    let statusWord = shoppingList.status == 1 ? 'Bought' : 'Nor Bought';
+                    let statusWord = shoppingList.status == 1 ? 'bought' : 'unfinished';
                     $("#title-info").html(shoppingList.title);
                     $("#date-info").html(shoppingList.date_added);
                     $("#status-info").html(statusWord);
