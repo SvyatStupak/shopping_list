@@ -17,7 +17,7 @@
                 <input type="text" class="form-control" id="title" name="title" placeholder="title" value="<?php echo set_value('title'); ?>">
             </div>
              <div class="form-group">
-             <select class="form-select" name="category_id">
+            <select class="form-select" name="category_id">
                 <option selected>Select Category</option>
              <?php foreach ($categories as $category) { ?> 
                 <option value="<?php echo $category->id; ?>"><?php echo $category->title; ?></option>

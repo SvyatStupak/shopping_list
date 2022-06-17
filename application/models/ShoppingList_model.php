@@ -14,8 +14,8 @@ class ShoppingList_model extends CI_Model{
     */
     public function get_all()
     {
-        $lists = $this->db->get("lists")->result();
-        return $lists;
+        $shoppingList = $this->db->get("lists")->result();
+        return $shoppingList;
     }
  
     /*
@@ -26,7 +26,7 @@ class ShoppingList_model extends CI_Model{
         $data = [
             'title' => $this->input->post('title'),
             // 'date_added' => $this->input->post('date_added'),
-            // 'status' => $this->input->post('status'),
+            'status' => $this->input->post('status'),
             'category_id' => $this->input->post('category_id'),
         ];
  
@@ -39,8 +39,8 @@ class ShoppingList_model extends CI_Model{
     */
     public function get($id)
     {
-        $list = $this->db->get_where('lists', ['id' => $id ])->row();
-        return $list;
+        $shoppingList = $this->db->get_where('lists', ['id' => $id ])->row();
+        return $shoppingList;
     }
  
  
@@ -56,7 +56,7 @@ class ShoppingList_model extends CI_Model{
             'category_id' => $this->input->post('category_id'),
         ];
  
-        $result = $this->db->where('id', $id)->update('lists',$data);
+        $result = $this->db->where('id', $id)->update('lists', $data);
         return $result;
                  
     }

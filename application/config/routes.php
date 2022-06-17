@@ -58,20 +58,29 @@ $route['translate_uri_dashes'] = FALSE;
 // Categories
 $route['category']= "Category/index";
 $route['category/create']= "Category/create";
-$route['category/edit'] = "Category/edit/$1";
-$route['category/store'] = "Category/store";
+$route['category/edit/(:any)'] = "Category/edit/$1";
+$route['category/store']['post'] = "Category/store";
 $route['category/show'] = "Category/show/$1";
-$route['category/update/(:any)'] = "Category/update/$1";
-$route['category/delete/(:any)'] = "Category/delete/$1";
+$route['category/update/(:any)']['put'] = "Category/update/$1";
+$route['category/delete/(:num)']['delete'] = "Category/delete/$1";
 
 // Lists
 $route['list'] = "ShoppingList/index";
 $route['list/create'] = "ShoppingList/create";
 $route['list/edit/(:any)'] = "ShoppingList/edit/$1";
-$route['list/store'] = "ShoppingList/store";
+$route['list/store']['post'] = "ShoppingList/store";
 $route['list/show/(:any)'] = "ShoppingList/show/$1";
-$route['list/update/(:any)']= "ShoppingList/update/$1";
-$route['list/delete/(:any)'] = "ShoppingList/delete/$1";
+$route['list/update/(:any)']['patch'] = "ShoppingList/update/$1";
+$route['list/delete/(:any)']['delete'] = "ShoppingList/delete/$1";
+
+// $route['project'] = "project/index";
+// $route['project/create'] = "project/create";
+// $route['project/store']['post'] = "project/store";
+// $route['project/edit/(:num)'] = "project/edit/$1";
+// $route['project/update/(:num)']['put'] = "project/update/$1";
+// $route['project/delete/(:num)']['delete'] = "project/delete/$1";
+
+
 
 
 
