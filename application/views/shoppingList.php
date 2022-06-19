@@ -96,7 +96,7 @@
                                     <label for="status">Choise category</label>
                                     <div>
                                         <select class="form-select" name="status" id="status">
-                                            <option value="0">unfinished</option>
+                                            <option selected value="0">unfinished</option>
                                             <option value="1">bought</option>
                                         </select>
                                     </div>
@@ -136,15 +136,6 @@
 
     <script type="text/javascript">
         showAllShoppingList();
-
-        function myFunction() {
-            var x = document.getElementById("status");
-            if (x.innerHTML === "Hello") {
-                x.innerHTML = "Swapped text!";
-            } else {
-                x.innerHTML = "Hello";
-            }
-        }
 
 
         /*
