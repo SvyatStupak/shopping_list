@@ -137,6 +137,16 @@
     <script type="text/javascript">
         showAllShoppingList();
 
+        function myFunction() {
+            var x = document.getElementById("status");
+            if (x.innerHTML === "Hello") {
+                x.innerHTML = "Swapped text!";
+            } else {
+                x.innerHTML = "Hello";
+            }
+        }
+
+
         /*
             filter category
         */
@@ -325,25 +335,6 @@
                 }
             });
         }
-       
-        // function editStatus(id) {
-        //     let url = $('meta[name=app-url]').attr("content") + "index.php/shoppingList/edit/" + id;
-        //     $.ajax({
-        //         url: url,
-        //         type: "GET",
-        //         success: function(response) {
-        //             let shoppingList = response;
-        //             $("#alert-div").html("");
-        //             $("#modal-alert-div").html("");
-        //             $("#update_id").val(shoppingList.id);
-        //             $("#status").val(shoppingList.status);
-        //             $("#form-status").modal('show');
-        //         },
-        //         error: function(response) {
-
-        //         }
-        //     });
-        // }
 
         /*
             sumbit the form and will update a record
@@ -366,8 +357,10 @@
                     $("#save-shoppinglist-btn").prop('disabled', false);
                     let successHtml = '<div class="alert alert-success" role="alert"><b>Shopping List Updated Successfully</b></div>';
                     $("#alert-div").html(successHtml);
-                    $("#name").val("");
-                    $("#description").val("");
+                    $("#title").val("");
+                    $("#date_added").val("");
+                    $("#status").val("");
+                    $("#category_id").val("");
                     showAllShoppingList();
                     $("#form-modal").modal('hide');
                 },
@@ -394,7 +387,7 @@
         /*
             get and display the record info on modal
         */
-       
+
         function showShoppingList(id) {
             $("#title-info").html("");
             $("#date-info").html("");
