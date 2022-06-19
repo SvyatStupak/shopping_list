@@ -47,7 +47,7 @@
                                     <option value="" selected>All categories</option>
                                 </select>
                             </th>
-                            <th width="240px">Action</th>
+                            <th width="240px"></th>
                         </tr>
                         <tr>
                             <th>Title</th>
