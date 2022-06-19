@@ -96,6 +96,9 @@
     <script type="text/javascript">
         showAllCategories();
 
+        /*
+            shows all records
+        */
         function showAllCategories() {
             let url = $('meta[name=app-url]').attr("content") + "index.php/category/show_all";
             $.ajax({
@@ -201,7 +204,7 @@
 
         /*
             edit record function
-            it will get the existing value and show the project form
+            it will get the existing value and show the category form
         */
         function editCategory(id) {
             let url = $('meta[name=app-url]').attr("content") + "index.php/category/edit/" + id;
@@ -296,7 +299,7 @@
             };
             $.ajax({
                 url: url,
-                type: "DELETE",
+                type: "POST",
                 data: data,
                 success: function(response) {
                     let successHtml = '<div class="alert alert-success" role="alert"><b>Category Deleted Successfully</b></div>';

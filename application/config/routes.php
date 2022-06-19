@@ -73,12 +73,7 @@ $route['list/show/(:any)'] = "ShoppingList/show/$1";
 $route['list/update/(:any)']['patch'] = "ShoppingList/update/$1";
 $route['list/delete/(:any)']['delete'] = "ShoppingList/delete/$1";
 
-// $route['project'] = "project/index";
-// $route['project/create'] = "project/create";
-// $route['project/store']['post'] = "project/store";
-// $route['project/edit/(:num)'] = "project/edit/$1";
-// $route['project/update/(:num)']['put'] = "project/update/$1";
-// $route['project/delete/(:num)']['delete'] = "project/delete/$1";
+
 
 
 

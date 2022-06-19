@@ -20,10 +20,10 @@
 		<div class="card">
 			<div class="card-header" >
 				<a class="btn btn-info float-right" href="index.php/list">
-					All Category
+					Shopping list
 				</a>
 				<a class="btn btn-info float-left" href="index.php/category">
-					Shopping list
+					All Category
 				</a>
 			</div>
 

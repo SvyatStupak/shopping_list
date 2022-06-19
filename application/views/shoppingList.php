@@ -110,37 +110,6 @@
         </div>
     </div>
 
-    <div class="modal" tabindex="-1" role="dialog" id="form-status">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Change Status Form</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div id="modal-alert-div">
-
-                    </div>
-                    <form>
-                        <input type="hidden" name="update_id" id="update_id">
-                        <div class="form-group">
-                            <label for="status">Choise category</label>
-                            <div>
-                                <select class="form-select" name="status" id="status">
-                                    <option value="0">unfinished</option>
-                                    <option value="1">bought</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-outline-primary" id="save-shoppinglist-btn">Save Status</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- view record modal -->
     <div class="modal" tabindex="-1" role="dialog" id="view-modal">
         <div class="modal-dialog" role="document">
@@ -168,6 +137,9 @@
     <script type="text/javascript">
         showAllShoppingList();
 
+        /*
+            filter category
+        */
         $(document).ready(function() {
             $('#catFilter').on('change', function() {
                 var value = $(this).val();
@@ -178,6 +150,9 @@
             })
         })
 
+        /*
+            filter status
+        */
         $(document).ready(function() {
             $('#catStatus').on('change', function() {
                 var value = $(this).val();
@@ -188,6 +163,9 @@
             })
         })
 
+        /*
+            shows all records
+        */
         function showAllShoppingList() {
             let url = $('meta[name=app-url]').attr("content") + "index.php/shoppingList/show_all";
             $.ajax({
@@ -323,6 +301,10 @@
             });
         }
 
+        /*
+            edit record function
+            it will get the existing value and show the list form
+        */
         function editShoppingList(id) {
             let url = $('meta[name=app-url]').attr("content") + "index.php/shoppingList/edit/" + id;
             $.ajax({
@@ -343,26 +325,29 @@
                 }
             });
         }
+       
+        // function editStatus(id) {
+        //     let url = $('meta[name=app-url]').attr("content") + "index.php/shoppingList/edit/" + id;
+        //     $.ajax({
+        //         url: url,
+        //         type: "GET",
+        //         success: function(response) {
+        //             let shoppingList = response;
+        //             $("#alert-div").html("");
+        //             $("#modal-alert-div").html("");
+        //             $("#update_id").val(shoppingList.id);
+        //             $("#status").val(shoppingList.status);
+        //             $("#form-status").modal('show');
+        //         },
+        //         error: function(response) {
 
-        function editStatus(id) {
-            let url = $('meta[name=app-url]').attr("content") + "index.php/shoppingList/edit/" + id;
-            $.ajax({
-                url: url,
-                type: "GET",
-                success: function(response) {
-                    let shoppingList = response;
-                    $("#alert-div").html("");
-                    $("#modal-alert-div").html("");
-                    $("#update_id").val(shoppingList.id);
-                    $("#status").val(shoppingList.status);
-                    $("#form-status").modal('show');
-                },
-                error: function(response) {
+        //         }
+        //     });
+        // }
 
-                }
-            });
-        }
-
+        /*
+            sumbit the form and will update a record
+        */
         function updateShoppingList() {
             $("#save-shoppinglist-btn").prop('disabled', true);
             let url = $('meta[name=app-url]').attr("content") + "index.php/shoppingList/update/" + $("#update_id").val();
@@ -406,6 +391,10 @@
             });
         }
 
+        /*
+            get and display the record info on modal
+        */
+       
         function showShoppingList(id) {
             $("#title-info").html("");
             $("#date-info").html("");
@@ -431,6 +420,10 @@
                 }
             });
         }
+
+        /*
+            delete record function
+        */
 
         function destroyShoppingList(id) {
             let url = $('meta[name=app-url]').attr("content") + "index.php/shoppingList/delete/" + id;
